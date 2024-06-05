@@ -49,7 +49,7 @@ resource "vercel_project" "config" {
   framework = var.vercel_project_framework
   git_repository = {
     type              = "github"
-    repo              = "blakenp/${local.vercel_project_name}" // Make sure to always enter the lab organization name 'byuawsfhtl' and your app/repo name
+    repo              = "blakenp/${local.repo_name}" // Make sure to always enter the git username here like "blakenp" and your app/repo name
     production_branch = var.vercel_production_branch    // Define production branch here. It is usually master or main
   }
 
