@@ -73,13 +73,13 @@ variable "vercel_production_branch" {
 variable "install_command" {
   type        = string
   description = "Install command run by vercel for all deployments."
-  default     = "npm install"
+  default     = ""
 }
 
 variable "build_command" {
   type        = string
   description = "Build command for building projects to deploy on Vercel."
-  default     = "npm run build"
+  default     = ""
 }
 
 variable "output_directory" {
