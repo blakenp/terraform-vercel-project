@@ -12,7 +12,8 @@ terraform {
 # ==================== Locals ====================
 
 locals {
-  project_name   = var.app_name
+  repo_name = var.repo_name
+  vercel_project_name   = var.app_name
   app_domain_url = var.domain_url != null ? var.domain_url : "${var.hosted_zone.name}" // Route53 A record name
 }
 
@@ -44,11 +45,11 @@ provider "vercel" {
 }
 
 resource "vercel_project" "config" {
-  name      = local.project_name // This is how the name of your project will appear on Vercel
+  name      = local.vercel_project_name // This is how the name of your project will appear on Vercel
   framework = var.vercel_project_framework
   git_repository = {
     type              = "github"
-    repo              = "blakenp/${local.project_name}" // Make sure to always enter the lab organization name 'byuawsfhtl' and your app/repo name
+    repo              = "blakenp/${local.vercel_project_name}" // Make sure to always enter the lab organization name 'byuawsfhtl' and your app/repo name
     production_branch = var.vercel_production_branch    // Define production branch here. It is usually master or main
   }
 
@@ -60,13 +61,13 @@ resource "vercel_project" "config" {
 }
 
 data "vercel_project_directory" "root" {
-  path = "../../../../${local.project_name}" // This is just the root of your project
+  path = "../../../../${local.repo_name}" // This is just the root of your project
 }
 
 resource "vercel_deployment" "config" {
   project_id  = vercel_project.config.id
   ref         = var.branch
-  path_prefix = "../../../../${local.project_name}"
+  path_prefix = "../../../../${local.repo_name}"
   production  = (var.env == "prd") ? true : false // will only be a production deployment on the master/main branch
 
   project_settings = {                    // Note that project settings in vercel_deployment block only apply to current deployment activated by github actions, these are not default to all app deployments. 

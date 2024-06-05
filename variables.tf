@@ -1,3 +1,8 @@
+variable "repo_name" {
+  type = string
+  description = "Name of git repo storing code."
+}
+
 variable "app_name" {
   type        = string
   description = "Application name to name your Vercel Project. Must be <= 28 characters."
