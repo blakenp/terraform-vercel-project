@@ -73,25 +73,25 @@ variable "vercel_production_branch" {
 variable "install_command" {
   type        = string
   description = "Install command run by vercel for all deployments."
-  default     = ""
+  default     = null
 }
 
 variable "build_command" {
   type        = string
   description = "Build command for building projects to deploy on Vercel."
-  default     = ""
+  default     = null
 }
 
 variable "output_directory" {
   type        = string
   description = "Output directory for statically built app."
-  default     = ""
+  default     = null
 }
 
 variable "dev_command" {
   type        = string
   description = "Command for dev environment builds for vercel deployments."
-  default     = ""
+  default     = null
 }
 
 variable "root_directory" {
