@@ -17,7 +17,6 @@ module "vercel_project" {
   # Custom Domain (Optional)
   domain_url  = var.domain_url  # Optional (Description: Custom domain URL)
   hosted_zone = var.hosted_zone # Optional (Description: Hosted Zone object for domain redirection)
-  records     = var.records     # Optional (Description: Record values for custom domain)
 
   # IAM Role and Vercel Configuration (Optional)
   role_permissions_boundary_arn = var.role_permissions_boundary_arn # Optional (Description: IAM Role Permissions Boundary ARN)

@@ -13,19 +13,17 @@ terraform {
 
 locals {
   project_name   = var.app_name
-  app_domain_url = var.domain_url != null ? var.domain_url : "${var.app_name}.${var.hosted_zone.name}" // Route53 A record name
-
-  records = var.records
+  app_domain_url = var.domain_url != null ? var.domain_url : "${var.hosted_zone.name}" // Route53 A record name
 }
 
 # ==================== Route53 ====================
 
-resource "aws_route53_record" "a_record" {
+resource "aws_route53_record" "a_or_cname" {
   name    = local.app_domain_url
-  type    = "A"
+  type    = var.domain_url != null ? "CNAME" : "A"
   zone_id = var.hosted_zone.id
   ttl     = 300
-  records = local.records
+  records = var.domain_url != null ? ["cname.vercel-dns.com."] : ["76.76.21.21"]
 }
 
 # currently vercel doesn't support redirecting apps to aaaa records, but in the future when they

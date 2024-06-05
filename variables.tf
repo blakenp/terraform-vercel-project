@@ -38,12 +38,6 @@ variable "hosted_zone" {
   description = "Hosted Zone object to redirect to app's running code. A and AAAA records created in this hosted zone."
 }
 
-variable "records" {
-  type        = list(string)
-  description = "Value of what the domain_url for the app will be pointing at."
-  default     = ["cname.vercel-dns.com."] # Default value
-}
-
 variable "role_permissions_boundary_arn" {
   type        = string
   description = "IAM Role Permissions Boundary ARN."
