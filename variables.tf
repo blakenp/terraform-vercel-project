@@ -97,5 +97,5 @@ variable "dev_command" {
 variable "root_directory" {
   type        = string
   description = "The root directory that holds the package.json and other dependencies."
-  default     = "src"
+  default     = null
 }
